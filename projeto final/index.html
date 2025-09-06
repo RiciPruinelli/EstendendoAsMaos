@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associação Estendendo as Mãos Para as Mulheres</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* --- CONTEÚDO DO SEU ARQUIVO style.css --- */
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #4B0082;
+            --accent: #FF69B4;
+            --light: #F8F9FA;
+            --dark: #343A40;
+            --success: #28A745;
+            --hover-color: #FFA500;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .botao-sair {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.95rem; /* Leve redução para consistência */
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .botao-sair:hover {
+            background-color: #ff4da6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .conteiner {
+            width: 98%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- ALTERAÇÕES FINAIS NO LAYOUT DO CABEÇALHO --- */
+        .cabecalho-conteiner {
+            display: flex;
+            align-items: center; /* Alinha verticalmente */
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+            margin-right: 20px; /* Margem para separar do menu */
+        }
+        
+        .cabecalho-conteiner nav {
+           flex-grow: 1; /* Faz o menu ocupar o espaço disponível */
+        }
+
+        /* Removemos a regra antiga e super-específica */
+        /* header .conteiner > nav:first-of-type { ... } FOI REMOVIDO */
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px; /* ESPAÇAMENTO MÍNIMO */
+            flex-wrap: nowrap;
+            justify-content: center; /* Centraliza os itens no espaço */
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem; /* FONTE MENOR */
+            transition: all 0.3s ease;
+            padding: 4px 6px; /* PADDING MÍNIMO */
+            border-radius: 5px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        /* --- FIM DAS ALTERAÇÕES --- */
+
+        .logo-imagem {
+            width: 75px;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .logo-pulsante {
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .logo-texto {
+            font-size: 1.2rem;
+            font-weight: bold;
+            white-space: normal;
+            line-height: 1.2;
+            text-align: left;
+        }
+       
+        nav a:hover {
+            background-color: var(--hover-color);
+            color: var(--dark);
+            transform: scale(1.05);
+        }
+
+        nav a.ativo {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(138, 43, 226, 0.8), rgba(75, 0, 130, 0.8)), url('imagem ong.jpeg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .botao {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .botao:hover {
+            background-color: #ff4da6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .botao-contorno {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        .botao-contorno:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .titulo-secao:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .conteudo-sobre {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .texto-sobre h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .grid-valores {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .cartao-valor {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .cartao-valor:hover {
+            transform: translateY(-10px);
+        }
+
+        .icone-valor {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .cartao-valor h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .conteiner-contato {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .informacao-contato {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .item-contato {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .icone-contato {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+
+        .grupo-formulario {
+            margin-bottom: 20px;
+        }
+
+        .grupo-formulario label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .controle-formulario {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .controle-formulario:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+
+        textarea.controle-formulario {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .conteiner-voluntario {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .links-sociais {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .link-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .link-social:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0 1rem;
+        }
+
+        .rodape-conteiner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .rodape-sobre {
+            flex: 2;
+            min-width: 300px;
+            margin-right: 20px;
+            text-align: left;
+        }
+
+        .rodape-sobre p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .rodape-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .rodape-links {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .rodape-links h3 {
+            margin-bottom: 8px;
+            position: relative;
+            padding-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .rodape-links h3:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 1px;
+            background: var(--accent);
+            margin: 5px auto 0;
+            border-radius: 2px;
+        }
+
+        .rodape-links ul {
+            list-style: none;
+            columns: 2;
+            column-gap: 15px;
+            padding: 0;
+            width: fit-content;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .rodape-links li {
+            margin-bottom: 8px;
+            break-inside: avoid-column;
+        }
+
+        .rodape-links a {
+            font-size: 0.95rem;
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .rodape-links a:hover {
+            color: var(--accent);
+        }
+
+        .rodape-qrcodes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            align-items: start;
+            justify-items: center;
+        }
+
+        .item-qrcode {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .item-qrcode h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .item-qrcode p {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        .imagem-qrcode {
+            width: 120px;
+            height: auto;
+            background-color: white;
+            padding: 8px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 1px solid #444; /* Linha sutil adicionada */
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        #ajuda {
+            background-color: var(--light);
+        }
+
+        .conteudo-ajuda {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+            color: var(--dark);
+        }
+
+        .conteudo-ajuda h3 {
+            color: var(--primary);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+
+        .conteudo-ajuda ul {
+            list-style: disc;
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .rodape-conteiner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .rodape-sobre,
+            .rodape-links {
+                margin-right: 0;
+                text-align: center;
+            }
+
+            .rodape-links ul {
+                columns: 1;
+                text-align: center;
+                width: auto;
+            }
+            .conteudo-sobre,
+            .conteiner-contato {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cabecalho-conteiner {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .logo {
+                margin-right: 0;
+                justify-content: center;
+                width: 100%;
+            }
+            header .conteiner > nav:first-of-type {
+                margin: 0;
+                padding: 0;
+            }
+            
+            nav ul {
+                gap: 1px;
+                flex-wrap: nowrap;
+            }
+            nav a {
+                font-size: 0.85rem;
+                padding: 5px 6px;
+            }
+
+            .hero { padding: 3rem 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            section { padding: 3rem 0; }
+            .conteiner-voluntario { padding: 20px; }
+            .rodape-qrcodes { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            .botao {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* --- CSS COMPLEMENTAR DO SEU HTML --- */
+        #direitos, #numeros, #guias, #doacoes-interativas {
+            padding: 5rem 0;
+        }
+        #direitos, #doacoes-interativas {
+            background-color: #fff;
+        }
+        #numeros {
+            background-color: var(--light);
+        }
+        .cards-container-3, .cards-container-4 {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .cards-container-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .card-custom {
+            background: var(--light);
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card-custom:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .card-custom h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .card-custom p {
+            color: #555;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .card-custom strong {
+            display: block;
+            margin-top: 10px;
+            color: var(--primary);
+        }
+        .law-card {
+            border-left: 5px solid var(--hover-color);
+        }
+        .official-link {
+            display: inline-block;
+            background-color: #eee;
+            color: var(--secondary);
+            padding: 10px 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .official-link:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        .numbers-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .infographics {
+            flex: 1.2;
+            min-width: 300px;
+            max-width: 450px;
+        }
+        .infographic-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .infographic-item .icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-right: 20px;
+        }
+        .infographic-item p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .charts-wrapper {
+            flex: 1.5;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .chart-container {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            margin: 0 auto;
+            height: 300px;
+            position: relative;
+        }
+        .numbers-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .source-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #777;
+            text-decoration: none;
+        }
+        .source-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        .guide-card {
+            background: #FFF8E1;
+            border-left: 5px solid var(--hover-color);
+        }
+        .guide-card ul {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+        }
+        .guide-card li {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .guide-card a {
+            font-weight: 600;
+        }
+        .donation-tabs {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .tab-button {
+            padding: 12px 30px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            background: var(--light);
+            border-radius: 30px;
+            margin: 0 5px;
+            font-weight: 600;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .donation-content { display: none; }
+        .donation-content.active { display: block; }
+        .donation-card-interactive {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            border: 2px solid #eee;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .donation-card-interactive:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+        .donation-card-interactive h4 {
+            color: var(--secondary);
+        }
+        .donation-card-interactive .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin: 15px 0;
+        }
+        .donation-card-interactive p {
+            font-size: 0.9rem;
+        }
+        .donation-card-interactive .botao {
+            margin-top: 20px;
+        }
+        #pix-area {
+            margin-top: 30px;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        #pix-area p {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px auto;
+        }
+        #qrcode canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        #pix-copy-paste {
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #pix-copy-paste:hover {
+            background-color: var(--primary);
+        }
+        #voluntario {
+            padding: 2rem 0;
+        }
+        .voluntario-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+        .voluntario-coluna-esquerda, .voluntario-coluna-direita {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .voluntario-coluna-direita {
+            min-height: 100%;
+        }
+        #voluntario textarea.controle-formulario {
+            flex-grow: 1;
+            min-height: 160px;
+            resize: vertical;
+        }
+        .voluntario-botao-container {
+            margin-top: auto;
+            align-self: flex-end;
+            width: 100%;
+        }
+        .voluntario-botao-container button {
+            width: 100%;
+            margin-top: 0;
+        }
+        #contato {
+            padding: 2rem 0;
+        }
+        .conteiner-contato {
+            gap: 40px;
+        }
+        #contato .item-contato {
+            margin-bottom: 15px;
+        }
+        #contato .grupo-formulario {
+            margin-bottom: 12px;
+        }
+        #contato textarea.controle-formulario {
+            min-height: 80px;
+            resize: none;
+        }
+        @media (max-width: 768px) {
+            .voluntario-form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .rodape-qrcodes .item-qrcode img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+        #doacoes-interativas .titulo-secao {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="conteiner cabecalho-conteiner">
+            <div class="logo">
+                <img src="logofinal-semfundo.png" alt="Logo Associação Estendendo as Mãos" class="logo-imagem logo-pulsante">
+                <div class="logo-texto">Associação Estendendo as Mãos Para as Mulheres</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio" class="ativo">Início</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#direitos">Seus Direitos</a></li>
+                    <li><a href="#numeros">Números</a></li>
+                    <li><a href="#guias">Guias Práticos</a></li>
+                    <li><a href="#ajuda">Ajuda e Proteção</a></li>
+                    <li><a href="#doacoes-interativas">Doe Agora</a></li>
+                    <li><a href="#voluntario">Seja Voluntário</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="botao-sair" onclick="window.location.href='https://www.google.com';">Sair</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+             <div class="conteiner">
+                 <p>Apoio, assistência e respaldo para mulheres em situação de vulnerabilidade e violência doméstica</p>
+                 <div class="conteiner-botao">
+                     <a href="#doacoes-interativas" class="botao">Faça uma Doação</a>
+                     <a href="#voluntario" class="botao botao-contorno">Seja Voluntário</a>
+                 </div>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Sobre Nós</h2>
+                <div class="conteudo-sobre">
+                    <div class="texto-sobre">
+                        <h3>Nossa História</h3>
+                        <p>Fundada em 2018, a Associação Estendendo as Mãos Para as Mulheres nasceu da necessidade de oferecer apoio e assistência para mulheres em situação de vulnerabilidade e vítimas de violência doméstica na região de Franca e entorno.</p>
+                        <p>Desde então, temos trabalhado incansavelmente para criar uma rede de apoio que ofereça suporte emocional, jurídico e material para mulheres que buscam reconstruir suas vidas.</p>
+                        <br>
+                        <h3>Missão</h3>
+                        <p>Oferecer suporte integral para mulheres em situação de vulnerabilidade, promovendo sua autonomia, segurança e reinserção social através de atendimento multidisciplinar e ações de conscientização.</p>
+                        <br>
+                        <h3>Visão</h3>
+                        <p>Ser referência no combate à violência contra a mulher e na promoção de uma sociedade mais justa e igualitária, onde todas as mulheres possam viver com dignidade e respeito.</p>
+                    </div>
+
+                    <div class="valores-sobre">
+                        <div class="texto-sobre">
+                            <h3>Nossos Valores</h3>
+                        </div>
+                        <div class="grid-valores">
+                            <div class="cartao-valor">
+                                <i class="fas fa-heart icone-valor"></i>
+                                <h4>Empatia</h4>
+                                <p>Agimos com compaixão e compreensão das necessidades de cada mulher.</p>
+                            </div>
+                            <div class="cartao-valor">
+                                <i class="fas fa-shield-alt icone-valor"></i>
+                                <h4>Proteção</h4>
+                                <p>Garantimos sigilo e segurança para todas as mulheres atendidas.</p>
+                            </div>
+                            <div class="cartao-valor">
+                                <i class="fas fa-balance-scale icone-valor"></i>
+                                <h4>Justiça</h4>
+                                <p>Lutamos pelos direitos das mulheres e pelo cumprimento das leis.</p>
+                            </div>
+                            <div class="cartao-valor">
+                                <i class="fas fa-hands icone-valor"></i>
+                                <h4>Solidariedade</h4>
+                                <p>Acreditamos na força da comunidade e do apoio mútuo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="direitos">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Seus Direitos: A Lei Está do Seu Lado</h2>
+                <div class="cards-container-4">
+                    <div class="card-custom law-card">
+                        <h3>Lei Maria da Penha</h3>
+                        <p><strong>O que é?</strong> A principal lei de combate à violência doméstica. Cria mecanismos para proteger a mulher e punir o agressor.</p>
+                        <p><strong>Garante:</strong> Medidas protetivas, reconhecimento de todos os tipos de violência e atendimento especializado.</p>
+                        <p><strong>Como Solicitar:</strong> Vá a uma Delegacia da Mulher (DDM) ou registre um B.O. em qualquer delegacia. Você também pode pedir ajuda ao ligar 180.</p>
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" class="official-link">🔗 Link Oficial</a>
+                    </div>
+                    <div class="card-custom law-card">
+                        <h3>Lei do Stalking (Perseguição)</h3>
+                        <p><strong>O que é?</strong> Criminaliza a perseguição, seja física ou digital, que ameace a integridade física ou psicológica de alguém, restringindo sua liberdade.</p>
+                        <p><strong>Garante:</strong> Punição com pena de reclusão e multa para quem persegue reiteradamente outra pessoa.</p>
+                        <p><strong>Como Solicitar:</strong> Junte provas (prints, testemunhas) e registre um Boletim de Ocorrência na delegacia mais próxima ou online.</p>
+                        <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14132.htm" target="_blank" class="official-link">🔗 Link Oficial</a>
+                    </div>
+                    <div class="card-custom law-card">
+                        <h3>Lei da Importunação Sexual</h3>
+                        <p><strong>O que é?</strong> Criminaliza a prática de ato libidinoso (de cunho sexual) na presença de alguém sem a sua permissão, como toques indesejados e "encoxadas".</p>
+                        <p><strong>Garante:</strong> Que atos que antes eram considerados apenas contravenção penal (com penas leves) agora sejam crimes com punição mais severa.</p>
+                        <p><strong>Como Solicitar:</strong> Procure a polícia imediatamente ou assim que possível para registrar a ocorrência. Testemunhas são importantes.</p>
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13718.htm" target="_blank" class="official-link">🔗 Link Oficial</a>
+                    </div>
+                    <div class="card-custom law-card">
+                        <h3>Lei do Minuto Seguinte</h3>
+                        <p><strong>O que é?</strong> Garante atendimento imediato e gratuito no SUS para vítimas de violência sexual.</p>
+                        <p><strong>Garante:</strong> Atendimento médico sem precisar de B.O., coleta de provas, exames preventivos e apoio psicológico imediato.</p>
+                        <p><strong>Como Solicitar:</strong> Procure qualquer hospital da rede pública o mais rápido possível após a violência. O atendimento é um direito e obrigatório.</p>
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12845.htm" target="_blank" class="official-link">🔗 Link Oficial</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="numeros">
+             <div class="conteiner">
+                <h2 class="titulo-secao">A Realidade em Números</h2>
+                <div class="numbers-content">
+                    <div class="infographics">
+                        <div class="infographic-item"><span class="icon">⏰</span><p>A cada <strong>6 horas</strong> uma mulher é vítima de feminicídio no Brasil.</p></div>
+                        <div class="infographic-item"><span class="icon">💔</span><p>Mais de <strong>1.800 mulheres</strong> são agredidas fisicamente por dia.</p></div>
+                        <div class="infographic-item"><span class="icon">📈</span><p>São Paulo é o estado com o maior número de feminicídios do país.</p></div>
+                    </div>
+                    <div class="charts-wrapper">
+                        <div class="chart-container">
+                            <canvas id="violenceLocationChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="violenceTypeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="numbers-cta">
+                    <a href="#doacoes-interativas" class="botao">Esses números representam vidas. Doe Agora!</a>
+                </div>
+                <div class="sources-container" style="text-align: center; margin-top: 20px;">
+                    <a href="https://forumseguranca.org.br/wp-content/uploads/2023/07/anuario-2023.pdf" target="_blank" class="source-link">Fonte Infográficos: Anuário Brasileiro de Segurança Pública 2023</a>
+                    <a href="https://forumseguranca.org.br/wp-content/uploads/2025/03/relatorio-visivel-e-invisivel-5ed-2025.pdf" target="_blank" class="source-link">Fonte Gráficos: Pesquisa Visível e Invisível, 5ª Ed. (2025), FBSP</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="guias">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Guias Práticos: Um Caminho para a Liberdade</h2>
+                <div class="cards-container-3">
+                    <div class="card-custom guide-card">
+                        <h3>Estou em Perigo?</h3>
+                        <ul>
+                            <li><strong>Emergência:</strong> Ligue <strong>190</strong> (Polícia Militar).</li>
+                            <li><strong>Apoio Municipal:</strong> Ligue <strong>153</strong> (Guarda Civil).</li>
+                            <li><strong>Denúncia e Orientação:</strong> Ligue <strong>180</strong> (Anônimo).</li>
+                            <li><strong>Delegacia da Mulher (DDM) Franca:</strong> (16) 3721-1122.</li>
+                        </ul>
+                    </div>
+                    <div class="card-custom guide-card">
+                        <h3>Cursos e Recolocação (Franca/SP)</h3>
+                        <ul>
+                            <li><strong>PAT Franca:</strong> <a href="https://www.franca.sp.gov.br/pat" target="_blank">Acesse o site</a> | Tel: (16) 3723-5244</li>
+                            <li><strong>SEBRAE Franca:</strong> <a href="https://sebraesp.com.br/franca/" target="_blank">Acesse o site</a> | Tel: 0800 570 0800</li>
+                            <li><strong>SENAC Franca:</strong> <a href="https://www.sp.senac.br/senac-franca" target="_blank">Acesse o site</a> | Tel: (16) 3402-4100</li>
+                            <li><strong>SENAI Franca:</strong> <a href="https://franca.sp.senai.br/" target="_blank">Acesse o site</a> | Tel: (16) 3712-1700</li>
+                        </ul>
+                    </div>
+                     <div class="card-custom guide-card">
+                        <h3>Plano de Segurança</h3>
+                        <ul>
+                            <li><strong>Onde Ir:</strong> Combine locais seguros (amigos, família).</li>
+                            <li><strong>O que Levar:</strong> Separe uma mochila com documentos e itens essenciais.</li>
+                            <li><strong>Com Quem Contar:</strong> Tenha uma lista de contatos de confiança.</li>
+                            <li><strong>Mantenha Registros:</strong> Guarde prints, mensagens e fotos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="doacoes-interativas">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Seja um Anjo na Vida de uma Mulher</h2>
+                <div class="donation-tabs">
+                    <button class="tab-button active" onclick="showDonationTab(event, 'pontual')">Doação Pontual</button>
+                    <button class="tab-button" onclick="showDonationTab(event, 'permanente')">Doadores Permanentes</button>
+                    <button class="tab-button" onclick="showDonationTab(event, 'parceiro')">Cesta Básica Virtual</button>
+                </div>
+
+                <div id="pontual" class="donation-content active">
+                     <div class="cards-container-3">
+                        <div class="donation-card-interactive" onclick="handleDonationClick(30, 'Kit de Higiene')"><h4>Kit de Higiene</h4><p class="price">R$ 30</p><p>Garanta dignidade e um recomeço limpo.</p></div>
+                        <div class="donation-card-interactive" onclick="handleDonationClick(80, 'Apoio Psicológico')"><h4>Apoio Psicológico</h4><p class="price">R$ 80</p><p>Custeie uma sessão para curar feridas invisíveis.</p></div>
+                        <div class="donation-card-interactive" onclick="handleDonationClick(100, 'Cesta Básica')"><h4>Cesta Básica</h4><p class="price">R$ 100</p><p>Ofereça segurança alimentar e força para lutar.</p></div>
+                    </div>
+                    <div id="pix-area" style="display: none;">
+                        <p id="pix-message">Para doar, aponte a câmera do seu celular para o QR Code abaixo ou use o "Copia e Cola".</p>
+                        <div id="qrcode"></div>
+                        <button id="pix-copy-paste">Copiar Código PIX</button>
+                    </div>
+                </div>
+
+                <div id="permanente" class="donation-content">
+                    <div class="cards-container-3">
+                        <div class="donation-card-interactive" style="cursor: default;">
+                            <h4>Anjo de Bronze</h4>
+                            <p class="price">R$ 25/mês</p>
+                            <p>Ajuda a custear o transporte para mulheres irem a entrevistas e audiências.</p>
+                            <a href="#" class="botao">Quero ser Bronze</a>
+                        </div>
+                        <div class="donation-card-interactive" style="cursor: default;">
+                            <h4>Anjo de Prata</h4>
+                            <p class="price">R$ 50/mês</p>
+                            <p>Garante material de apoio para nossos grupos terapêuticos.</p>
+                            <a href="#" class="botao">Quero ser Prata</a>
+                        </div>
+                        <div class="donation-card-interactive" style="cursor: default;">
+                            <h4>Anjo de Ouro</h4>
+                            <p class="price">R$ 100/mês</p>
+                            <p>Ajuda a pagar por auxílios emergenciais, como aluguel social.</p>
+                            <a href="#" class="botao">Quero ser Ouro</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="parceiro" class="donation-content">
+                     <div class="cards-container-3" style="justify-content: center;">
+                         <div class="donation-card-interactive" style="cursor: default; max-width: 500px;">
+                            <h4>Cesta Básica Virtual</h4>
+                            <p class="price" style="font-size: 1.5rem;">Como funciona?</p>
+                            <p style="text-align: center;">Você faz uma parceria com um supermercado online. O doador clica no botão abaixo, compra a cesta no site do mercado, e o mercado entrega diretamente na nossa ONG. É simples, transparente e garante que a ajuda chegue na forma de alimento.</p>
+                            <a href="#" class="botao">Comprar no Mercado Parceiro</a>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="voluntario" style="background-color: var(--light);">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Seja um Voluntário</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Junte-se a nós e faça a diferença. Preencha o formulário para se candidatar.</p>
+                <div class="conteiner-voluntario">
+                    <form action="https://formspree.io/f/xqabyzrj" method="post">
+                        <div class="voluntario-form-grid">
+                            <div class="voluntario-coluna-esquerda">
+                                <div class="grupo-formulario"><label for="vol-nome">Nome Completo</label><input type="text" id="vol-nome" name="Nome Completo" class="controle-formulario" required></div>
+                                <div class="grupo-formulario"><label for="vol-email">Email</label><input type="email" id="vol-email" name="Email" class="controle-formulario" required></div>
+                                <div class="grupo-formulario"><label for="vol-telefone">Telefone</label><input type="tel" id="vol-telefone" name="Telefone" class="controle-formulario" required></div>
+                                <div class="grupo-formulario"><label for="vol-ocupacao">Profissão/Ocupação</label><input type="text" id="vol-ocupacao" name="Profissão/Ocupação" class="controle-formulario"></div>
+                                <div class="grupo-formulario"><label for="vol-disponibilidade">Disponibilidade</label><select id="vol-disponibilidade" name="Disponibilidade" class="controle-formulario" required><option value="">Selecione</option><option value="manha">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite</option><option value="manha_noite">Manhã e Noite</option><option value="tarde_noite">Tarde e Noite</option><option value="sab_manha">Sábado (Manhã)</option><option value="sab_tarde">Sábado (Tarde)</option><option value="sab_integral">Sábado (Integral)</option><option value="dom_manha">Domingo (Manhã)</option><option value="dom_tarde">Domingo (Tarde)</option><option value="flex">Horário flexível</option></select></div>
+                            </div>
+                            <div class="voluntario-coluna-direita">
+                                <div class="grupo-formulario"><label for="vol-habilidades">Habilidades e Áreas de Interesse</label><textarea id="vol-habilidades" name="Habilidades e Áreas de Interesse" class="controle-formulario" placeholder="Descreva suas habilidades e áreas de interesse"></textarea></div>
+                                <div class="grupo-formulario"><label for="vol-motivacao">Por que você quer ser voluntário?</label><textarea id="vol-motivacao" name="Motivação" class="controle-formulario" required placeholder="Explique sua motivação"></textarea></div>
+                                <div class="voluntario-botao-container">
+                                    <button type="submit" class="botao">Enviar Candidatura</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section id="ajuda" style="background-color: #fff;">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Como Buscar Ajuda e Se Proteger</h2>
+                <div class="conteudo-ajuda">
+                    <h3>Sinais de Abuso e Violência</h3>
+                    <p>É fundamental reconhecer os sinais de um relacionamento abusivo. A violência contra a mulher pode se manifestar de diversas formas: física, psicológica, sexual, moral e patrimonial.</p>
+                    <ul>
+                        <li>Violência Física: Socos, chutes, empurrões, puxões de cabelo, lesões.</li>
+                        <li>Violência Psicológica: Ameaças, humilhação, manipulação, controle excessivo, isolamento social.</li>
+                        <li>Violência Sexual: Qualquer ato sexual não consentido.</li>
+                        <li>Violência Moral: Calúnia, difamação, injúria.</li>
+                        <li>Violência Patrimonial: Controle de dinheiro, destruição de bens, furto.</li>
+                    </ul>
+                    <h3>Onde Buscar Ajuda Imediata</h3>
+                    <p>Se você ou alguém que você conhece está em situação de emergência, não hesite em pedir ajuda:</p>
+                    <ul>
+                        <li>Ligue 180: A Central de Atendimento à Mulher, um serviço gratuito e confidencial que oferece acolhimento, orientação e encaminhamento para serviços especializados.</li>
+                        <li>Polícia Militar (190): Em casos de emergência e flagrante.</li>
+                        <li>Delegacias da Mulher: Para registrar ocorrências e buscar apoio especializado.</li>
+                    </ul>
+                    <h3>Apoio Psicológico e Social</h3>
+                    <p>Reconstruir a vida após o abuso é um processo que requer apoio. Nossa associação está aqui para ajudar, mas existem outros recursos:</p>
+                    <ul>
+                        <li>Associação Estendendo as Mãos Para as Mulheres: Oferecemos suporte emocional, jurídico e material. Entre em contato conosco.</li>
+                        <li>Centros de Referência de Assistência Social (CRAS): Oferecem serviços de proteção social básica.</li>
+                        <li>Centros de Referência Especializados de Assistência Social (CREAS): Atendem casos de violação de direitos.</li>
+                    </ul>
+                    <h3>Construa um Plano de Segurança Pessoal</h3>
+                    <p>Ter um plano pode ser crucial em momentos de crise. Pense em:</p>
+                    <ul>
+                        <li>Para Onde Ir: Locais seguros (casa de amigos, familiares, abrigos).</li>
+                        <li>O Que Levar: Documentos, remédios, dinheiro, chaves, telefone.</li>
+                        <li>Com Quem Contar: Pessoas de confiança que podem ajudar.</li>
+                        <li>Mantenha Registros: Guarde prints, mensagens, fotos, datas e descrições de incidentes.</li>
+                    </ul>
+                    <p>Utilize também aplicativos de segurança, como o App SP Mulher Segura para iOS e Android, que pode ser uma ferramenta útil para acionar ajuda rapidamente.</p>
+                    <h3>Você Não Está Sozinha!</h3>
+                    <p>É importante lembrar que a culpa NÃO é sua. Você tem o direito de viver com dignidade e segurança. Não tenha medo ou vergonha de procurar ajuda. Estamos aqui para estender as mãos para você.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" style="background-color: var(--light);">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Entre em Contato</h2>
+                <div class="conteiner-contato">
+                    <div class="informacao-contato">
+                        <h3>Informações de Contato</h3>
+                        <div class="item-contato"><i class="fas fa-phone icone-contato"></i><div class="texto-contato"><h4>Telefone</h4><p>(16) 991938894</p></div></div>
+                        <div class="item-contato"><i class="fas fa-envelope icone-contato"></i><div class="texto-contato"><h4>Email</h4><p>evandasoares2008@hotmail.com</p></div></div>
+                        <div class="item-contato"><i class="fas fa-map-marker-alt icone-contato"></i><div class="texto-contato"><h4>Endereço</h4><p>Rua Mauro Roberto de Mattos, n 550  - pacaembu, Franca/SP</p></div></div>
+                        <div class="item-contato"><i class="fas fa-clock icone-contato"></i><div class="texto-contato"><h4>Horário de Atendimento</h4><p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p></div></div>
+                    </div>
+                    <div class="formulario-contato">
+                        <h3>Envie uma Mensagem</h3>
+                        <form action="https://formspree.io/f/xjkrabnp" method="post">
+                            <div class="grupo-formulario"><label for="nome">Nome Completo</label><input type="text" id="nome" name="Nome Completo" class="controle-formulario" required></div>
+                            <div class="grupo-formulario"><label for="email">Email</label><input type="email" id="email" name="Email" class="controle-formulario" required></div>
+                            <div class="grupo-formulario"><label for="telefone">Telefone</label><input type="tel" id="telefone" name="Telefone" class="controle-formulario"></div>
+                            <div class="grupo-formulario"><label for="assunto">Assunto</label><input type="text" id="assunto" name="Assunto" class="controle-formulario" required></div>
+                            <div class="grupo-formulario"><label for="mensagem">Mensagem</label><textarea id="mensagem" name="Mensagem" class="controle-formulario" required></textarea></div>
+                            <button type="submit" class="botao">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section style="padding: 3rem 0; background-color: #fff;">
+            <div class="conteiner">
+                <h2 class="titulo-secao">Siga-nos nas Redes Sociais</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Acompanhe nosso trabalho e ajude a divulgar nossa causa compartilhando nossas publicações.</p>
+                <div class="links-sociais">
+                    <a href="https://www.facebook.com/share/15kxX3i9hN/" class="link-social" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/estendendoasmaosparaasmulheres" class="link-social" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5516991938894" class="link-social" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+         <div class="conteiner">
+            <div class="rodape-conteiner">
+                <div class="rodape-sobre">
+                    <div class="rodape-logo">Estendendo as Mãos</div>
+                    <p>A Associação Estendendo as Mãos Para as Mulheres é uma organização sem fins lucrativos que atua no apoio a mulheres em situação de vulnerabilidade e vítimas de violência doméstica na região de Franca e entorno.</p>
+                    <p>CNPJ: 43.999.116/0001-99</p>
+                </div>
+                <div class="rodape-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#doacoes-interativas">Doações</a></li>
+                        <li><a href="#voluntario">Voluntários</a></li>
+                        <li><a href="#ajuda">Ajuda e Proteção</a></li> 
+                    </ul>
+                </div>
+            </div>
+            <div class="rodape-qrcodes">
+                <div class="item-qrcode">
+                    <h3>Ligue 180 - WhatsApp</h3>
+                    <p>Escaneie para acessar via WhatsApp.</p>
+                    <img src="qr180.png" alt="QR Code Ligue 180" class="imagem-qrcode">
+                </div>
+                <div class="item-qrcode">
+                    <h3>App SP Mulher Segura (iOS)</h3>
+                    <p>Digitalize para baixar na App Store.</p>
+                    <img src="spmulherseguraios.png" alt="QR Code App SP Mulher Segura iOS" class="imagem-qrcode">
+                </div>
+                <div class="item-qrcode">
+                    <h3>App SP Mulher Segura (Android)</h3>
+                    <p>Digitalize para baixar na Google Play.</p>
+                    <img src="spmulherseguraandroid.png" alt="QR Code App SP Mulher Segura Android" class="imagem-qrcode">
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Associação Estendendo as Mãos Para as Mulheres. Todos os direitos reservados.<br>
+                Desenvolvido por DevFranca - UCE Engenharia de Software - Faculdade de Tecnologia de Franca
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    
+            // --- CÓDIGO DOS GRÁFICOS ---
+            try { 
+                const ctx = document.getElementById('violenceLocationChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Violência Doméstica (Parceiro/Ex)', 'Outros Tipos de Violência'],
+                        datasets: [{
+                            data: [70, 30], 
+                            backgroundColor: ['#8A2BE2', '#FF69B4'],
+                            borderColor: '#f8f9fa',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: { 
+                            legend: { 
+                                position: 'top',
+                                labels: { color: '#333' }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) { label += ': '; }
+                                        if (context.parsed !== null) { label += context.parsed + '%'; }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error("Erro ao renderizar o gráfico de pizza:", e);
+            }
+
+            try {
+                const ctxTypes = document.getElementById('violenceTypeChart').getContext('2d');
+                new Chart(ctxTypes, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Ofensas Verbais', 'Agressão Física', 'Ameaças', 'Perseguição', 'Abuso Sexual'],
+                        datasets: [{
+                            label: '% de mulheres que sofreram nos últimos 12 meses',
+                            data: [31.4, 16.9, 16.1, 16.1, 10.7],
+                            backgroundColor: [
+                                'rgba(138, 43, 226, 0.7)','rgba(255, 105, 180, 0.7)','rgba(75, 0, 130, 0.7)','rgba(255, 165, 0, 0.7)','rgba(52, 58, 64, 0.7)'
+                            ],
+                            borderColor: [
+                                '#8A2BE2','#FF69B4','#4B0082','#FFA500','#343A40'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        indexAxis: 'y', 
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Violência Sofrida (últimos 12 meses)',
+                                color: '#333',
+                                font: { size: 14 }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return value + '%' }
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch(e) {
+                console.error("Erro ao renderizar o gráfico de barras:", e);
+            }
+            
+            // --- SCRIPT DE NAVEGAÇÃO ATIVA ---
+            const linksNav = document.querySelectorAll('nav ul li a');
+            const secoes = document.querySelectorAll('section');
+            const cabecalho = document.querySelector('header');
+    
+            function removerClassesAtivas() {
+                linksNav.forEach(link => { link.classList.remove('ativo'); });
+            }
+    
+            function definirLinkAtivo() {
+                let ativoAtual = null;
+                secoes.forEach(secao => {
+                    const secaoTopo = secao.offsetTop - (cabecalho.offsetHeight + 5);
+                    if (window.pageYOffset >= secaoTopo) {
+                        ativoAtual = secao.getAttribute('id');
+                    }
+                });
+                removerClassesAtivas();
+                if (ativoAtual) {
+                    const linkAtivo = document.querySelector(`nav ul li a[href="#${ativoAtual}"]`);
+                    if (linkAtivo) {
+                        linkAtivo.classList.add('ativo');
+                    }
+                }
+            }
+    
+            window.addEventListener('scroll', definirLinkAtivo);
+            definirLinkAtivo();
+        });
+
+        // --- FUNÇÕES GLOBAIS ---
+        function showDonationTab(evt, tabName) {
+            document.querySelectorAll('.donation-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+        }
+    
+        const pixArea = document.getElementById('pix-area');
+        const qrcodeContainer = document.getElementById('qrcode');
+        const copyButton = document.getElementById('pix-copy-paste');
+    
+        async function handleDonationClick(valor, descricao) {
+            pixArea.style.display = 'block';
+            qrcodeContainer.innerHTML = 'Gerando QR Code seguro...';
+            
+            try {
+                const pixData = await gerarPixDinamicoAPI(valor, descricao);
+                qrcodeContainer.innerHTML = "";
+                new QRCode(qrcodeContainer, {
+                    text: pixData.copiaECola,
+                    width: 200,
+                    height: 200,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                copyButton.onclick = () => {
+                    navigator.clipboard.writeText(pixData.copiaECola).then(() => {
+                        copyButton.innerText = "Copiado!";
+                        setTimeout(() => { copyButton.innerText = "Copiar Código PIX"; }, 2000);
+                    });
+                };
+            } catch (error) {
+                qrcodeContainer.innerHTML = 'Erro ao gerar o QR Code. Tente novamente.';
+                console.error(error);
+            }
+        }
+        
+        async function gerarPixDinamicoAPI(valor, descricao) {
+            // TODO: Substitua esta simulação pela chamada real à sua API de backend.
+            console.log(`Solicitando PIX para R$ ${valor} (${descricao}) ao backend...`);
+            await new Promise(resolve => setTimeout(resolve, 500)); // Simula a demora da rede
+            const pixPayloadEstatico = `00020126580014br.gov.bcb.pix013643999116000199520400005303986540${valor.toFixed(2).replace('.', '')}5802BR5915NOME DA SUA ONG6006FRANCA62070503***6304ABCD`;
+            return { copiaECola: pixPayloadEstatico };
+        }
+    </script>
+</body>
+</html>
