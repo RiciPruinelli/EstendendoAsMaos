@@ -52,7 +52,7 @@
             padding: 10px 20px;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 0.95rem; /* Leve redução para consistência */
+            font-size: 1rem;
             border: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
@@ -73,11 +73,13 @@
             padding: 0 15px;
         }
 
-        /* --- ALTERAÇÕES FINAIS NO LAYOUT DO CABEÇALHO --- */
         .cabecalho-conteiner {
             display: flex;
-            align-items: center; /* Alinha verticalmente */
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: nowrap;
+            gap: 20px;
+            padding-right: 0;
         }
 
         .logo {
@@ -85,38 +87,8 @@
             align-items: center;
             gap: 15px;
             flex-shrink: 0;
-            margin-right: 20px; /* Margem para separar do menu */
+            margin-right: auto;
         }
-        
-        .cabecalho-conteiner nav {
-           flex-grow: 1; /* Faz o menu ocupar o espaço disponível */
-        }
-
-        /* Removemos a regra antiga e super-específica */
-        /* header .conteiner > nav:first-of-type { ... } FOI REMOVIDO */
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 5px; /* ESPAÇAMENTO MÍNIMO */
-            flex-wrap: nowrap;
-            justify-content: center; /* Centraliza os itens no espaço */
-            align-items: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem; /* FONTE MENOR */
-            transition: all 0.3s ease;
-            padding: 4px 6px; /* PADDING MÍNIMO */
-            border-radius: 5px;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-        }
-        /* --- FIM DAS ALTERAÇÕES --- */
 
         .logo-imagem {
             width: 75px;
@@ -141,7 +113,39 @@
             line-height: 1.2;
             text-align: left;
         }
-       
+
+        header .conteiner > nav:first-of-type {
+            flex-grow: 1;
+            flex-shrink: 0;
+            margin-left: auto;
+            margin-right: 30px;
+            padding-right: 0;
+        }
+
+        /* --- ALTERAÇÕES NO MENU APLICADAS AQUI --- */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px; /* ALTERADO: Espaçamento mínimo */
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem; /* ALTERADO: Fonte menor */
+            transition: all 0.3s ease;
+            padding: 5px 6px; /* ALTERADO: Preenchimento menor */
+            border-radius: 5px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        /* --- FIM DAS ALTERAÇÕES NO MENU --- */
+
         nav a:hover {
             background-color: var(--hover-color);
             color: var(--dark);
@@ -478,19 +482,20 @@
 
         .imagem-qrcode {
             width: 120px;
-            height: auto;
+            height: 120px;
             background-color: white;
             padding: 8px;
             border-radius: 5px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             margin-top: 8px;
+            object-fit: contain;
         }
 
         .copyright {
             text-align: center;
             padding-top: 15px;
             margin-top: 15px;
-            border-top: 1px solid #444; /* Linha sutil adicionada */
+            border-top: 1px solid #444;
             font-size: 0.85rem;
             color: #aaa;
         }
@@ -561,18 +566,18 @@
                 padding: 0;
             }
             
+            /* --- AJUSTE FINAL DO MENU RESPONSIVO --- */
             nav ul {
-                gap: 1px;
+                gap: 3px; 
                 flex-wrap: nowrap;
             }
             nav a {
-                font-size: 0.85rem;
-                padding: 5px 6px;
+                font-size: 0.8rem;
+                padding: 5px 4px;
             }
+            /* --- FIM DO AJUSTE FINAL --- */
 
             .hero { padding: 3rem 1rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; }
             section { padding: 3rem 0; }
             .conteiner-voluntario { padding: 20px; }
             .rodape-qrcodes { grid-template-columns: 1fr; }
@@ -585,7 +590,7 @@
             }
         }
         
-        /* --- CSS COMPLEMENTAR DO SEU HTML --- */
+        /* --- CSS COMPLEMENTAR --- */
         #direitos, #numeros, #guias, #doacoes-interativas {
             padding: 5rem 0;
         }
@@ -853,9 +858,6 @@
         #contato {
             padding: 2rem 0;
         }
-        .conteiner-contato {
-            gap: 40px;
-        }
         #contato .item-contato {
             margin-bottom: 15px;
         }
@@ -1074,14 +1076,13 @@
 
                 <div id="pontual" class="donation-content active">
                      <div class="cards-container-3">
-                        <div class="donation-card-interactive" onclick="handleDonationClick(30, 'Kit de Higiene')"><h4>Kit de Higiene</h4><p class="price">R$ 30</p><p>Garanta dignidade e um recomeço limpo.</p></div>
-                        <div class="donation-card-interactive" onclick="handleDonationClick(80, 'Apoio Psicológico')"><h4>Apoio Psicológico</h4><p class="price">R$ 80</p><p>Custeie uma sessão para curar feridas invisíveis.</p></div>
-                        <div class="donation-card-interactive" onclick="handleDonationClick(100, 'Cesta Básica')"><h4>Cesta Básica</h4><p class="price">R$ 100</p><p>Ofereça segurança alimentar e força para lutar.</p></div>
+                        <div class="donation-card-interactive" onclick="mostrarAreaPix()"><h4>Kit de Higiene</h4><p class="price">R$ 30</p><p>Garanta dignidade e um recomeço limpo.</p></div>
+                        <div class="donation-card-interactive" onclick="mostrarAreaPix()"><h4>Apoio Psicológico</h4><p class="price">R$ 80</p><p>Custeie uma sessão para curar feridas invisíveis.</p></div>
+                        <div class="donation-card-interactive" onclick="mostrarAreaPix()"><h4>Cesta Básica</h4><p class="price">R$ 100</p><p>Ofereça segurança alimentar e força para lutar.</p></div>
                     </div>
                     <div id="pix-area" style="display: none;">
-                        <p id="pix-message">Para doar, aponte a câmera do seu celular para o QR Code abaixo ou use o "Copia e Cola".</p>
-                        <div id="qrcode"></div>
-                        <button id="pix-copy-paste">Copiar Código PIX</button>
+                        <p id="pix-message">Para doar, aponte a câmera do seu celular para o QR Code abaixo.</p>
+                        <img src="qrcode-pix.png" alt="QR Code para doação PIX" style="max-width: 200px; height: auto; margin: 15px auto; display: block;">
                     </div>
                 </div>
 
@@ -1400,6 +1401,8 @@
             }
         }
     
+        /*
+        // --- CÓDIGO DO QR CODE DINÂMICO COMENTADO ---
         const pixArea = document.getElementById('pix-area');
         const qrcodeContainer = document.getElementById('qrcode');
         const copyButton = document.getElementById('pix-copy-paste');
@@ -1437,6 +1440,20 @@
             await new Promise(resolve => setTimeout(resolve, 500)); // Simula a demora da rede
             const pixPayloadEstatico = `00020126580014br.gov.bcb.pix013643999116000199520400005303986540${valor.toFixed(2).replace('.', '')}5802BR5915NOME DA SUA ONG6006FRANCA62070503***6304ABCD`;
             return { copiaECola: pixPayloadEstatico };
+        }
+        */
+
+        // --- NOVA FUNÇÃO PARA MOSTRAR O QR CODE ESTÁTICO ---
+        function mostrarAreaPix() {
+            const pixArea = document.getElementById('pix-area');
+            if (pixArea) {
+                // Alterna a exibição: se estiver visível, esconde; se estiver escondido, mostra.
+                if (pixArea.style.display === 'block') {
+                    pixArea.style.display = 'none';
+                } else {
+                    pixArea.style.display = 'block';
+                }
+            }
         }
     </script>
 </body>
